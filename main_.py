@@ -19,30 +19,31 @@ from bs4 import BeautifulSoup
 import requests
 
 MAIN_PATH = "http://www.meteoam.it"  # Path of the page to parse.
-SAVE_FOLDER = ""  # Folder used to save imgs.
+SAVE_FOLDER = "INSERT YOUR FOLDER HERE"  # Folder used to save imgs.
 DELAY = 10  # Seconds to wait after header creation and between subsequent trials.
 
 # Check if already are images in the saving folder, shows them and ask to delete.
 existing_imgs = os.listdir(SAVE_FOLDER)
-print('The following images already exist.\n')
-for x in existing_imgs:
-    print("---> " + x)
-inp = input('Do you want to remove them? [y/n]')
-if inp == 'y':
+if len(existing_imgs) > 0:
+    print('The following images already exist.\n')
     for x in existing_imgs:
-        os.remove(os.path.join(SAVE_FOLDER, x))
-    print('Old images removed.\n')
+        print("---> " + x)
+    inp = input('Do you want to remove them? [y/n]: ')
+    if inp == 'y':
+        for x in existing_imgs:
+            os.remove(os.path.join(SAVE_FOLDER, x))
+        print('Old images removed.\n')
 
-# Creating the header to make it work.
+# Creating the header to later open the images path.
 opener = URLopener()
 opener.addheader('Referer', "http://www.meteoam.it/prodotti_grafici/bassiStrati")
 print('Header created.\n')
-sleep(10)
 
 # Download the page
 print('The page is loading.\n')
 PAGE = "http://www.meteoam.it/prodotti_grafici/bassiStrati"
-result = requests.get(PAGE)
+header = {'User-Agent': 'Chrome/87.0.4280.66'}
+result = requests.get(PAGE, headers=header)
 
 # Keep repeating until it gets a good output.
 while result.status_code != 200:
@@ -52,9 +53,8 @@ while result.status_code != 200:
 
 # If successful parse the download into a BeautifulSoup object, which allows
 # easy manipulation.
-if result.status_code == 200:
-    soup = BeautifulSoup(result.content, "html.parser")
-    print('Page loaded successfully.')
+soup = BeautifulSoup(result.content, "html.parser")
+print('Page loaded successfully.')
 
 # Finding all the images with a width of '160', in this way it is possible to
 # select the needed images because are the only ones with this size.
