@@ -14,7 +14,7 @@ Le immagini e i prodotti meteo dell'AM sono soggetti ai [Termini di Utilizzo](ht
 
 Intervallo di validità è -3h/+3h dall'orario indicato.
 
-[Maggiori info](https://en.wikipedia.org/wiki/SIGWX#:~:text=SIGWX%20is%20a%20Significant%20Weather%20Chart%20defined%20by%20ICAO.&text=Charts%20are%20typically%20being%20issued,of%20the%20chart%20validity%20time.%20.) siguardo carte del tempo significativo.
+[Maggiori info](https://en.wikipedia.org/wiki/SIGWX#:~:text=SIGWX%20is%20a%20Significant%20Weather%20Chart%20defined%20by%20ICAO.&text=Charts%20are%20typically%20being%20issued,of%20the%20chart%20validity%20time.%20.) riguardo carte del tempo significativo.
 
 -------
 
